@@ -6,7 +6,16 @@ const app = new PIXI.Application({
 
 document.getElementById("gameport").appendChild(app.view);
 
-const peperoniTexture = new PIXI.Texture.from("../assets/texture.png")
+const peperoniTexture = new PIXI.Texture.from("../assets/texture1.png");
+const toppingTexture = new PIXI.Texture(toppingTextureValues[0]);
+
+var toppingTextureValues = [
+    "../assets/texture.png",
+    "../assets/texture1.png",
+    "../assets/texture2.png",
+    "../assets/texture3.png",
+    "../assets/texture4.png",
+];
 //creating pizza stage
 
 createBackground();
@@ -23,24 +32,33 @@ function createBackground(){
 
 //creating toppings bar
 function createToppings(){
-    var pepperoni = new PIXI.Sprite(peperoniTexture);
 
-    pepperoni.anchor.set(0.5);
-    pepperoni.x = 300;
-    pepperoni.y = 300;
-
-    pepperoni.interactive = true;
-    pepperoni.buttonMode = true;
-
-    
-    pepperoni
-        .on('pointerdown', onDragStart)
-        .on('pointerup', onDragEnd)
-        .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove);
-
-
-    app.stage.addChild(pepperoni);
+    for(i = 0; i < toppingTextureValues.length; i++)
+    {
+        for(j = 0; j < 6; j++)
+        {
+            var topping = new PIXI.Sprite(toppingTextureValues[0]);
+        
+            topping.anchor.set(0.5);
+            topping.x = 100 + i*175;
+            topping.y = 620;
+        
+            topping.interactive = true;
+            topping.buttonMode = true;
+        
+            
+            topping
+                .on('pointerdown', onDragStart)
+                .on('pointerup', onDragEnd)
+                .on('pointerupoutside', onDragEnd)
+                .on('pointermove', onDragMove);
+        
+        
+            app.stage.addChild(topping);
+            
+        }
+        
+    }
 }
 
 function onDragStart(event){
@@ -60,4 +78,3 @@ function onDragMove(){
         this.y = newPosition.y;
     }
 }
-
