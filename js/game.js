@@ -6,15 +6,13 @@ const app = new PIXI.Application({
 
 document.getElementById("gameport").appendChild(app.view);
 
-const peperoniTexture = new PIXI.Texture.from("../assets/texture1.png");
-const toppingTexture = new PIXI.Texture(toppingTextureValues[0]);
 
 var toppingTextureValues = [
     "../assets/texture.png",
     "../assets/texture1.png",
     "../assets/texture2.png",
     "../assets/texture3.png",
-    "../assets/texture4.png",
+    "../assets/texture4.png"
 ];
 //creating pizza stage
 
@@ -29,15 +27,16 @@ function createBackground(){
     backgroundContainer.addChild(background);
     app.stage.addChild(backgroundContainer);
 }
-
-//creating toppings bar
+// !cant load textures from toppingTextureVakues array
 function createToppings(){
 
     for(i = 0; i < toppingTextureValues.length; i++)
     {
+        var toppingTexture = new PIXI.Texture.from(toppingTextureValues[i]);
+
         for(j = 0; j < 6; j++)
         {
-            var topping = new PIXI.Sprite(toppingTextureValues[0]);
+            var topping = new PIXI.Sprite(toppingTexture);
         
             topping.anchor.set(0.5);
             topping.x = 100 + i*175;
