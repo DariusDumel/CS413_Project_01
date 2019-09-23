@@ -6,6 +6,8 @@ const app = new PIXI.Application({
 
 document.getElementById("gameport").appendChild(app.view);
 
+const backgroundContainer = new PIXI.Container();
+const backgroundTexture = new PIXI.Texture.from("../assets/pizzabackground_900X600.png");
 
 var toppingTextureValues = [
     "../assets/texture.png",
@@ -21,13 +23,11 @@ createToppings();
 
 function createBackground(){
     
-    const backgroundContainer = new PIXI.Container();
-    const backgroundTexture = new PIXI.Texture.from("../assets/pizzabackground_900X600.png");
     var background = new PIXI.Sprite(backgroundTexture);
     backgroundContainer.addChild(background);
     app.stage.addChild(backgroundContainer);
 }
-// !cant load textures from toppingTextureVakues array
+
 function createToppings(){
 
     for(i = 0; i < toppingTextureValues.length; i++)
@@ -63,6 +63,11 @@ function createToppings(){
 function onDragStart(event){
     this.data = event.data;
     this.dragging = true;
+    
+    //redrawing sprite to be on top
+    var parent = this.parent;
+    parent.removeChild(this);
+    parent.addChild(this);
 }
 
 function onDragEnd(){
