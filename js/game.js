@@ -61,14 +61,17 @@ function createToppings(){
 }
 
 function onDragStart(event){
+    redrawSprite(this);
     this.data = event.data;
     this.dragging = true;
-    
-    //redrawing sprite to be on top
-    var parent = this.parent;
-    parent.removeChild(this);
-    parent.addChild(this);
 }
+
+function redrawSprite(sprite)
+{
+    var parent = sprite.parent;
+    parent.removeChild(sprite);
+    parent.addChild(sprite);
+};
 
 function onDragEnd(){
     this.dragging = false;
