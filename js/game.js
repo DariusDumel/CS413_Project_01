@@ -1,20 +1,20 @@
 const app = new PIXI.Application({
     width: 900,
-    height: 700,
+    height: 600,
     backgroundColor: 0xff69b4,
 });
 
 document.getElementById("gameport").appendChild(app.view);
 
 const backgroundContainer = new PIXI.Container();
-const backgroundTexture = new PIXI.Texture.from("../assets/pizzabackground_900X600.png");
+const backgroundTexture = new PIXI.Texture.from("assets/pizza.png");
 
 var toppingTextureValues = [
-    "../assets/texture.png",
-    "../assets/texture1.png",
-    "../assets/texture2.png",
-    "../assets/texture3.png",
-    "../assets/texture4.png"
+    "assets/pepperoni.png",
+    "assets/pineapple.png",
+    "assets/black_olives.png",
+    "assets/love.png",
+    "assets/fish.png"
 ];
 //creating pizza stage
 
@@ -40,7 +40,7 @@ function createToppings(){
         
             topping.anchor.set(0.5);
             topping.x = 100 + i*175;
-            topping.y = 620;
+            topping.y = 520;
         
             topping.interactive = true;
             topping.buttonMode = true;
